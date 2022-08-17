@@ -8,6 +8,6 @@ jobs:
       - name: Clone-down
         uses: actions/checkout@v2
       - name: Build
-      - run: ci/build-app.sh
+        run: ci/build-app.sh
       - name: Test
         run: chmod +x ci/unit-test-app.sh && ci/unit-test-app.sh
