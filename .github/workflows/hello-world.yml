@@ -6,7 +6,6 @@ jobs:
     steps:
       - name: checkout-step
         uses: actions/checkout@v2
-<<<<<<< HEAD
       - name: Upload Repo
         uses: actions/upload-artifact@v2
         with:
@@ -43,9 +42,8 @@ jobs:
         with:
           name: code
           path: .
-=======
       - name: Build
         run: ci/build-app.sh
       - name: Test
         run: ci/unit-test-app.sh
->>>>>>> f38c29adb28fc160c9b065d75d8c22d92ae7097e
+
