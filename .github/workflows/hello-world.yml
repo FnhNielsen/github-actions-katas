@@ -23,7 +23,7 @@ jobs:
           name: code
           path: .
       - name: test-step
-        run:  ci/unit-test-app.sh
+        run: ci/unit-test-app.sh
 
   Build:
     runs-on: ubuntu-latest
@@ -36,14 +36,9 @@ jobs:
           name: code
           path: .
       - name: build-step
-        run:  ci/build-app.sh
+        run: ci/build-app.sh
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: code
           path: .
-      - name: Build
-        run: ci/build-app.sh
-      - name: Test
-        run: ci/unit-test-app.sh
-
