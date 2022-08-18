@@ -8,7 +8,7 @@ name: Java CI
 on: push
 jobs:
   Clone-down:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: checkout-step
         uses: actions/checkout@v2
@@ -19,7 +19,7 @@ jobs:
           path: .
 
   Test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     container: gradle:6-jdk11
     needs: Clone-down
     steps:
@@ -32,7 +32,7 @@ jobs:
         run: chmod +x ci/unit-test-app.sh && ci/unit-test-app.sh
 
   Build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     container: gradle:6-jdk11
     needs: Clone-down
     steps:
@@ -50,7 +50,7 @@ jobs:
           path: .
           
   Docker-image:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [Test,Build]
     steps:
       - name: Download artifact
@@ -65,7 +65,7 @@ jobs:
         run: chmod +x ci/push-docker.sh && ci/push-docker.sh  
 
   Component-test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [Docker-image]
     steps:
       - name: Execute component test
@@ -77,7 +77,7 @@ jobs:
         run: chmod +x ci/component-test.sh && GIT_COMMIT="GA-$GITHUB_SHA" && ci/component-test.sh
 
   Performance-test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [Docker-image]
     steps:
       - name: Execute performance test
